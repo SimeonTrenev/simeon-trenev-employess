@@ -1,31 +1,30 @@
 import { Component } from "react";
+import './DataGrid.css';
 
 class DataGrid extends Component {
   render() {
     const { employeeId1, employeeId2, projectId, daysWorked } = this.props;
     return (
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Employee ID #1</th>
-              <th>Employee ID #2</th>
-              <th>Project ID</th>
-              <th>Days worked</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{employeeId1}</td>
-              <td>{employeeId2}</td>
-              <td>{projectId}</td>
-              <td>{daysWorked}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <table className="ui celled table">
+      <thead className="thead">
+        <tr><th>Employee ID #1</th>
+        <th>Employee ID #2</th>
+        <th>Project ID</th>
+        <th>Days worked</th>
+      </tr></thead>
+      <tbody>
+        <tr className="tr">
+          <td data-label="Employee ID #1">{employeeId1}</td>
+          <td data-label="Employee ID #2">{employeeId2}</td>
+          <td data-label="Project ID">{projectId}</td>
+          <td data-label="Days worked">{daysWorked}</td>
+        </tr>
+      </tbody>
+    </table>
     );
   }
 }
 
 export default DataGrid;
+
+
