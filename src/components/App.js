@@ -146,10 +146,23 @@ class App extends Component {
               moment(secondEmpStartDate).isSameOrBefore(firstEmpEndDate) &&
               moment(firstEmpStartDate).isSameOrBefore(secondEmpEndDate)
             ) {
+
+             let startDates = [firstEmpStartDate, secondEmpStartDate];
+             let sortedStartDates = startDates.sort((a, b) => a.localeCompare(b));
+
+             let endDates = [firstEmpEndDate, secondEmpEndDate];
+             let sortedEndDates = endDates.sort((a, b) => b.localeCompare(a));
+
+             let startingDay = moment(startDates[0])
+             let endDay = moment(endDates[0])
+
+             const days = endDay.diff(startingDay, 'days')
+             
+
               this.state.employees[i].employees.push({
                employeeId: this.state.employees[i + 1].employeeId,
                projectId : this.state.employees[i + 1].projects[0].projectId,
-               workingDays : this.state.employees[i + 1].projects[0].myWokingDates.startDate
+               workingDays : days
               }
               );
             }
@@ -190,7 +203,8 @@ class App extends Component {
     const secondCurrentEmployer = this.state.employees.map(
       (currEmp) => currEmp.employeeId
     )[1];
-   
+   const currentProjId = this.state.employees.map(curr => curr.projects)
+  //  console.log(currentProjId[0]?.projects)
     // this.state.employees.forEach(emp => console.log(emp.employees))
     // console.log(this.state.employees[0]?.employees[0]);
     // console.log(this.state.employees);
