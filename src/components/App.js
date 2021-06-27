@@ -148,10 +148,13 @@ class App extends Component {
             ) {
 
              let startDates = [firstEmpStartDate, secondEmpStartDate];
-             let sortedStartDates = startDates.sort((a, b) => a.localeCompare(b));
+             let sortedStartDates = startDates.sort((a, b) => b.localeCompare(a));
 
              let endDates = [firstEmpEndDate, secondEmpEndDate];
-             let sortedEndDates = endDates.sort((a, b) => b.localeCompare(a));
+             let sortedEndDates = endDates.sort((a, b) => a.localeCompare(b));
+
+             console.log(sortedStartDates)
+             console.log(sortedEndDates)
 
              let startingDay = moment(startDates[0])
              let endDay = moment(endDates[0])
