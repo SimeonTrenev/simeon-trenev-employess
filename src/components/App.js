@@ -7,6 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       employees: [],
+      commonProjects : '',
+      commonWorkingDays : ''
     };
   }
 
@@ -153,9 +155,7 @@ class App extends Component {
              let endDates = [firstEmpEndDate, secondEmpEndDate];
              let sortedEndDates = endDates.sort((a, b) => a.localeCompare(b));
 
-             console.log(sortedStartDates)
-             console.log(sortedEndDates)
-
+          
              let startingDay = moment(startDates[0])
              let endDay = moment(endDates[0])
 
@@ -169,19 +169,12 @@ class App extends Component {
               }
               );
             }
-            //      console.log(firstEmpStartDate)
-            // console.log(firstEmpEndDate)
-            // console.log(secondEmpStartDate)
-            // console.log(secondEmpEndDate)
+     
           }
         }
       }
 
-      // console.log(this.state.employees[i].projects)
-      // console.log(this.state.employees[i + 1].projects)
-
-      // console.log(this.state)
-      // console.log(this.state)
+      
     }
   };
 
@@ -195,6 +188,11 @@ class App extends Component {
       alert(text);
       this.setUniqueProjectsByEmployee(splittedText);
       this.checkWorkingTogetherEmployee();
+      const currentProjId = this.state.employees.map(curr => curr.employees)
+      const togetherWorkingDays = currentProjId[0].map(curr => curr.workingDays)
+      const togetherWorkingProjects = currentProjId[0].map(curr => curr.projectId)
+
+      this.setState({commonProjects : togetherWorkingProjects, commonWorkingDays: togetherWorkingDays})
     };
     reader.readAsText(e.target.files[0]);
   };
@@ -206,8 +204,7 @@ class App extends Component {
     const secondCurrentEmployer = this.state.employees.map(
       (currEmp) => currEmp.employeeId
     )[1];
-   const currentProjId = this.state.employees.map(curr => curr.projects)
-  //  console.log(currentProjId[0]?.projects)
+
     // this.state.employees.forEach(emp => console.log(emp.employees))
     // console.log(this.state.employees[0]?.employees[0]);
     // console.log(this.state.employees);
@@ -217,8 +214,8 @@ class App extends Component {
         <DataGrid
           employeeId1={firstCurrentEmployer}
           employeeId2={secondCurrentEmployer}
-          projectId={this.state.projectId}
-          daysWorked={this.state.daysWorked}
+          projectId={this.state.commonProjects}
+          daysWorked={this.state.commonWorkingDays}
         />
       </div>
     );
