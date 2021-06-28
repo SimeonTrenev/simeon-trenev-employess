@@ -59,7 +59,7 @@ class App extends Component {
         employees.push(emp);
       }
     }
-    // console.log(employees);
+  
     this.setState({ employees });
   };
 
@@ -106,19 +106,11 @@ class App extends Component {
       this.setState({ employees: updatedEmployees });
     }
 
-    // console.log(this.state);
+   
   };
 
   checkWorkingTogetherEmployee = () => {
-    // for(let elements of this.state.employees){
-    //   console.log(elements)
-    //  console.log(elements.employeeId)
-
-    //  elements.projects.map(currentProject => {
-    //    console.log(currentProject)
-    //  })
-
-    // }
+  
     for (let i = 0; i < this.state.employees.length; i++) {
       if (i === this.state.employees.length - 1) {
         break;
@@ -150,10 +142,10 @@ class App extends Component {
             ) {
 
              let startDates = [firstEmpStartDate, secondEmpStartDate];
-             let sortedStartDates = startDates.sort((a, b) => b.localeCompare(a));
+             startDates.sort((a, b) => b.localeCompare(a));
 
              let endDates = [firstEmpEndDate, secondEmpEndDate];
-             let sortedEndDates = endDates.sort((a, b) => a.localeCompare(b));
+             endDates.sort((a, b) => a.localeCompare(b));
 
           
              let startingDay = moment(startDates[0])
@@ -205,9 +197,7 @@ class App extends Component {
       (currEmp) => currEmp.employeeId
     )[1];
 
-    // this.state.employees.forEach(emp => console.log(emp.employees))
-    // console.log(this.state.employees[0]?.employees[0]);
-    // console.log(this.state.employees);
+
     return (
       <div>
         <input type="file" onChange={(e) => this.showFile(e)} />
